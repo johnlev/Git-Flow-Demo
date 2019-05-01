@@ -17,7 +17,7 @@ This is a merge conflict, and they can be super messy to resolve and will clutte
 
 Have you ever pushed code that's not quite working yet? Has a someone tried to get the code off master and found that it *doesn't work*?! Of course you should commit that not yet complete code, but we also want the version of code people will pull be something that works. Wouldn't it be nice if we could interact with Git such that pulled **code is always working** but intermediate progress is **still tracked**?
 
-<center>**The solution is Git Flow**</center>
+**The solution is Git Flow**
 ![Git Flow](https://blog.eduonix.com/wp-content/uploads/2015/04/Integration-Testing-with-Git-Flow.png)
 
 
