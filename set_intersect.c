@@ -94,7 +94,13 @@ static void set_intersect_helper(void *arg, const char *key, void *item)
   int *itemA = set_find(setA, key);
   int *itemB = set_find(setB, key);
   if (itemA != NULL && itemB != NULL) {
-    set_insert(destination, key, intsave(*itemB));
+    int value = 0;
+    if (*itemA < *itemB) {
+      value = *itemA;
+    } else {
+      value = *itemB;
+    }
+    set_insert(destination, key, intsave(value));
   }
 }
 
