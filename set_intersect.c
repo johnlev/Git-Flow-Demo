@@ -60,11 +60,14 @@ int main()
   set_delete(result, itemdelete);
 }
 
-/* Merge the second set into the first set;
- * the second set is unchanged.
+/* Intersects the two sets and returns a new set
  */
 static set_t *set_intersect(set_t *setA, set_t *setB)
 {
+  if (setA == NULL || setB == NULL) {
+    return NULL;
+  }
+
   set_t *set = set_new();
   set_intersect_data_t *intersect_data = assertp(malloc(sizeof(set_intersect_data_t)), "intersect_data");
   
@@ -75,10 +78,11 @@ static set_t *set_intersect(set_t *setA, set_t *setB)
   set_iterate(setA, intersect_data, set_intersect_helper);
   set_iterate(setB, intersect_data, set_intersect_helper);
   
+  free(intersect_data);
   return set;
 }
 
-/* Help the set_intersect function to complete it's opperation
+/* Help the set_intersect function to complete its opperation
  */
 static void set_intersect_helper(void *arg, const char *key, void *item)
 {
@@ -89,8 +93,9 @@ static void set_intersect_helper(void *arg, const char *key, void *item)
 
   int *itemA = set_find(setA, key);
   int *itemB = set_find(setB, key);
-  if (itemA != NULL && itemB != NULL)
+  if (itemA != NULL && itemB != NULL) {
     set_insert(destination, key, intsave(*itemB));
+  }
 }
 
 /* print the given item to the given file.
